@@ -13,10 +13,10 @@ internal class Program
 
         // p1.idade = 27;
         p1.altura = 1.79;
-        p1.SetDataNasc(DateTime.Parse("31/12/1990"));
-
+        p1.SetDataNasc(DateTime.Parse("15/03/1987"));
+        p1.CalculaIdade(p1.GetDataNasc());
         // p1.NomeInteiro();
-        // p1.ImprimePessoa(p1);
+        p1.ImprimePessoa(p1);
     }
 
     public class Pessoa
@@ -68,7 +68,8 @@ internal class Program
         {
             Console.WriteLine($"Nome da pessoa é {this.GetNome()}");
             Console.WriteLine($"Data de nascimento é {this.GetDataNasc()}");
-            Console.WriteLine($"altura é {this.altura}");
+            Console.WriteLine($"A altura é {this.altura} m");
+            Console.WriteLine($"A idade é {CalculaIdade(this.dataNasc)} anos");
 
 
         }
@@ -85,6 +86,19 @@ internal class Program
             string nomeInteiro = "";
             nomeInteiro = nome + " " + sobrenome;
             return nomeInteiro;
+        }
+
+        // Calcula idade
+
+        public int CalculaIdade(DateTime dataNasc)
+        {
+            DateTime data = DateTime.Now;
+            int idade = data.Year - dataNasc.Year;
+            if (dataNasc > data.AddYears(-idade))  //se a dataNasc for maior, a pessoa ainda não fez aniversário
+            {
+                idade--;
+            }
+            return idade;
         }
 
     }
